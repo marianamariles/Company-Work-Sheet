@@ -42,6 +42,8 @@ rows1 = worksheet.get_all_values()
 # Convert list of rows to a DataFrame
 employeeTable = pd.DataFrame.from_records(rows1[1:], columns=rows1[0])
 
+from openpyxl import load_workbook
+
 def createAppend(date, name, rate, row, num:int, is_All:bool):
   if is_All:
     append_Dict = {'Timestamp':date, 'Person':name, 'LT#':row[f'Lot Number_{num}'],
@@ -128,7 +130,7 @@ def addSummaryofWeek(df, week_of:int):
   #all_DataFrame.loc[:, cols] = all_DataFrame[cols].astype(float).applymap('${:,.2f}'.format)
   all_DataFrame.to_excel(filepath, sheet_name = 'All_Employees', index=False)
 
-# Function to create excel work sheet - Main function 
+# Function to create excel work sheet
 def createWorkSheet(df, employeeDF, week_of:int):
 
   addSummaryofWeek(df, week_of)
@@ -320,5 +322,18 @@ def createWorkSheet(df, employeeDF, week_of:int):
       print(f'        {i}')
   print('Completed.')
 
-# Call function to create weekXentries.xlsx
-createWorkSheet(employeeData, employeeTable, 20210101)
+def main():
+  boolean = True
+  while boolean:
+    Week_of = input('Enter week end date:')
+    boolean = input(f'Make excel sheet with date: {Week_of} \n Is this correct? (y/n)')
+    if boolean == 'y':
+      boolean = False
+    else:
+      boolean = True 
+
+  # Call function based on inputs
+  createWorkSheet(employeeData, employeeTable, Week_of)
+
+if __name__ == '__main__':
+  main()

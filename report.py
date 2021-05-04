@@ -4,9 +4,9 @@
 ##pip install reportlab
 
 def makeReport(weekof):
-  # Import libraries 
   import pandas as pd
   import numpy as np
+  # pip install reportlab
   from reportlab.pdfgen.canvas import Canvas
   from reportlab.lib import colors
   from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -32,16 +32,13 @@ def makeReport(weekof):
   
   boolean = True
   while boolean:
-    print('Enter number of employee you wish to run a report:')
-    number = input()
-    number = int(number)
+    number = int(input('Enter number of employee you wish to run a report:'))
+    #number = int(number)
     if number >= (len(sheet_names)+1):
-      print('Number entered is out of range. Please re-enter number of employee you wish to run a report:')
-      number = input()
+      number = int(input('Number entered is out of range. Please re-enter number of employee you wish to run a report:'))
     number = int(number)
     name = name_dict[number]
-    print('The employee sheet you picked is:', name, '. \n Is this correct? (y/n)')
-    boolean = input()
+    boolean = input(f'The employee sheet you picked is: {name}. \n Is this correct? (y/n)')
     if boolean == 'y':
       boolean = False
     else:
@@ -101,8 +98,9 @@ def makeReport(weekof):
   
   notes = df[['LT#', 'Notes']]
   notes = notes[df['Notes'] != '-']
-  #notes --> loc[row_indexer,col_indexer] = value
+  #notes --> loc[row_indexer,col_indexer] = value - ERROR
   notes.loc[:,'comment'] = df['LT#'] + ': ' + df['Notes']
+  #print(notes)
   comment = notes.comment.tolist()
 
   formatted_comment = []
@@ -221,9 +219,12 @@ def makeReport(weekof):
   c.save()
   print('Completed.')
 
-# Interaction with user
-print('Enter week end date:')
-Week_of = input()
-# Call function based on inputs
-makeReport(Week_of)
 
+def main():
+  print('Enter week end date:')
+  Week_of = input()
+  # Call function based on inputs
+  makeReport(Week_of)
+
+if __name__ == '__main__':
+  main()
