@@ -8,7 +8,7 @@ Designed a process for retrieving, manipulating and reporting company work sheet
 
 I was inspired to create this process from seeing an individual complete work sheets (better known as time sheets) for his/her drywall company on a weekly basis for all employees. Previously, the way the work completion per employee was gathered was by the employee sending an email to the supervisor at the end of the week. The retrieval of data came from an email which the supervisor would then format into a well-formatted excel sheet. This excel sheet was formatted to be printed for employees to keep track of their weeks work and pay.
 
-## Noes 
+## Notes 
 
 - Tools used for this project are highly influenced by the supervisor. For instance, the idea to leverage google services strives from catering to the user
 - For privacy reasons/restrictions, the files presented are from testing phases and no company information is shown
